@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-
+import os
 import pickle
 #from sklearn.model_selection import cross_val_score
 import pandas as pd
@@ -7,7 +7,7 @@ import pandas as pd
 #import sqlite3
 #from datetime import datetime
 
-
+os.chdir(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -23,7 +23,7 @@ def hello():
 # --PREDICCIÓN--
 @app.route('/predict', methods=['GET','POST'])
 def predict():
-    model = pickle.load(open('api\model\sentiment_model','rb'))
+    model = pickle.load(open('model\sentiment_model','rb'))
     
     text = request.args.get('text', None)
     file={'text':text}
