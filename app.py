@@ -21,7 +21,7 @@ def hello():
             
 
 # --PREDICCIÓN--
-@app.route('/predict', methods=['GET','POST'])
+@app.route('/predict', methods=['GET'])
 def predict():
     model = pickle.load(open('model\sentiment_model','rb'))
     
@@ -37,9 +37,9 @@ def predict():
     prediction = model.predict(df_test)
 
     if prediction == 0:
-        print('El TEXTO no genera impacto.')
+         return 'El TEXTO no genera impacto.'
     else:
-        print('Ha conseguido un  TEXTO exitoso, le recomendamos que lo publique')
+         return 'Ha conseguido un  TEXTO exitoso, le recomendamos que lo publique'
 
 
 
@@ -47,4 +47,5 @@ def predict():
 
 
 
-#app.run()
+
+app.run()
